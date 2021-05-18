@@ -23,6 +23,9 @@ namespace EnglishSTAR
         public MainWindow()
         {
             InitializeComponent();
+            BD.LE = new LonhsakovaEntities();
+            Frm.Mfrm = frm1;
+            frm1.Navigate(new Admin());
         }
     }
 }

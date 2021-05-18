@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnglishSTAR"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="EnglishSTAR" Height="450" Width="800">
     <Grid>
-        
+        <Frame Name="frm1" NavigationUIVisibility="Hidden">
+        </Frame>
     </Grid>
 </Window>

@@ -1,0 +1,47 @@
+﻿<Page x:Class="EnglishSTAR.Admin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:EnglishSTAR"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Admin">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <DataGrid Name="DGServises" AutoGenerateColumns="False" HorizontalAlignment="Left" IsReadOnly="True" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"  Width="500" Initialized="StackPanel_Initialized">
+                                        <StackPanel>
+                                            <MediaElement Width="50" Height="50" Initialized="MediaElement_Initialized"/>
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <TextBlock Initialized="TextBlock_Initialized"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Name="cost" Visibility="Visible" Initialized="cost_Initialized"/>
+                                                <TextBlock Name="newcost" Initialized="newcost_Initialized"/>
+                                            </StackPanel>
+                                            <TextBlock Name="skidka" Initialized="skidka_Initialized"/>
+
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Name="red" Content="Редактировать" Initialized="red_Initialized" Click="red_Click"/>
+                                                <Button Name="del" Content="Удалить" Margin="10,0,10,0"/>
+                                                <Button Name="dobav" Content="Новый заказ" Margin="0,0,10,0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>
