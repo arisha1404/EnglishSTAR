@@ -4,6 +4,54 @@
              xmlns:local="clr-namespace:EnglishSTAR"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ControlTemplate x:Key="knop" TargetType="Button">
+            <Border x:Name="button"  Background="#04a0ff"
+                     BorderBrush="White"
+                     BorderThickness="0.5"
+                    Width="90"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+                <ContentControl Content="{TemplateBinding Content}" FontSize="12" FontFamily="Comic Sans MS" Foreground= "White" FontWeight="Medium"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <Style x:Key="title" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="text" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+        <ControlTemplate x:Key="butt" TargetType="Button">
+            <Border x:Name="button"  Background="#04a0ff"
+                     BorderBrush="White"
+                     BorderThickness="0.5"
+                    Width="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <ContentControl Content="{TemplateBinding Content}" FontSize="14" FontFamily="Comic Sans MS" Foreground= "White" FontWeight="Medium"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        <Style x:Key="name" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="tb" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
     </Application.Resources>
 </Application>

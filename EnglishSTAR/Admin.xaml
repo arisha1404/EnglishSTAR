@@ -9,29 +9,57 @@
       Title="Admin">
 
     <Grid>
+        <Image Source="/img/school_logo.png" Width="30" Height="30" Margin="30,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <ScrollViewer>
             <StackPanel>
-                <DataGrid Name="DGServises" AutoGenerateColumns="False" HorizontalAlignment="Left" IsReadOnly="True" CanUserAddRows="False">
+                <TextBlock Name="yslugi" Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Visible">Услуги</TextBlock>
+                <TextBlock Name="zap" Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed">Добавление записи</TextBlock>
+                <TextBlock Name="reda" Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed">Редактирование записи</TextBlock>
+                <TextBlock Name="new_dob" Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed">Добавить новую записи</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Button Name="dob" Content="Добавить запись" Initialized="dob_Initialized" Click="dob_Click" Template="{StaticResource butt}" Visibility="Visible" Margin="10,10,0,10"></Button>
+                    <Button Name="Bsorti" Content="Сортировка" Click="Bsorti_Click"  Template="{StaticResource butt}" Visibility="Visible" Margin="10,10,0,10"></Button>
+                </StackPanel>
+                <StackPanel Name="sort" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">Сортировка по стоимости услуги:</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <Button Name="Bup" Content="По возрастанию" Click="Bup_Click" Template="{StaticResource butt}" Margin="10,10,0,10"></Button>
+                        <Button Name="Bdown" Content="По убыванию" Click="Bdown_Click" Template="{StaticResource butt}" Margin="10,10,0,10"></Button>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">Поиск по размеру скидки</TextBlock>
+                    <ComboBox Name="Filter" SelectionChanged="Filter_SelectionChanged" Width="450">
+                        <ComboBoxItem>0-5%</ComboBoxItem>
+                        <ComboBoxItem>5-15%</ComboBoxItem>
+                        <ComboBoxItem>15-30%</ComboBoxItem>
+                        <ComboBoxItem>30-70%</ComboBoxItem>
+                        <ComboBoxItem>70-100%</ComboBoxItem>
+                        <ComboBoxItem>Все</ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Style="{StaticResource title}" HorizontalAlignment="Center" VerticalAlignment="Bottom">Поиск по названию:</TextBlock>
+                    <TextBox Name="poisk" TextChanged="poisk_TextChanged" TextAlignment="Left" Style="{StaticResource tb}" Margin="0,0,0,10"></TextBox>
+                </StackPanel>
+                
+                <DataGrid Name="DGServises" AutoGenerateColumns="False" HorizontalAlignment="Center" IsReadOnly="True" CanUserAddRows="False" Visibility="Visible">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal"  Width="500" Initialized="StackPanel_Initialized">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Initialized="StackPanel_Initialized">
                                         <StackPanel>
-                                            <MediaElement Width="50" Height="50" Initialized="MediaElement_Initialized"/>
+                                            <MediaElement Width="80" Height="80" Initialized="MediaElement_Initialized"/>
                                         </StackPanel>
                                         <StackPanel>
-                                            <TextBlock Initialized="TextBlock_Initialized"/>
+                                            <TextBlock Initialized="TextBlock_Initialized" Style="{StaticResource title}"/>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Name="cost" Visibility="Visible" Initialized="cost_Initialized"/>
-                                                <TextBlock Name="newcost" Initialized="newcost_Initialized"/>
+                                                <TextBlock Name="cost" Visibility="Visible" Initialized="cost_Initialized" Style="{StaticResource text}"/>
+                                                <TextBlock Name="newcost" Initialized="newcost_Initialized"  Style="{StaticResource text}"/>
                                             </StackPanel>
-                                            <TextBlock Name="skidka" Initialized="skidka_Initialized"/>
+                                            <TextBlock Name="skidka" Initialized="skidka_Initialized"  Style="{StaticResource text}"/>
 
                                             <StackPanel Orientation="Horizontal">
-                                                <Button Name="red" Content="Редактировать" Initialized="red_Initialized" Click="red_Click"/>
-                                                <Button Name="del" Content="Удалить" Margin="10,0,10,0"/>
-                                                <Button Name="dobav" Content="Новый заказ" Margin="0,0,10,0"/>
+                                                <Button Name="red" Content="Редактировать" Initialized="red_Initialized" Template="{StaticResource knop}" Margin="10,10,0,0" Click="red_Click"/>
+                                                <Button Name="del" Content="Удалить" Initialized="del_Initialized" Template="{StaticResource knop}" Click="del_Click" Margin="10,10,10,0"/>
+                                                <Button Name="dobav" Content="Новый заказ" Template="{StaticResource knop}" Margin="0,10,10,0" Initialized="dobav_Initialized" Click="dobav_Click"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -40,6 +68,65 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
+                <StackPanel Name="forma" Visibility="Collapsed">
+                    <TextBlock  Style="{StaticResource name}">ID</TextBlock>
+                    <TextBlock Name="id_f" Style="{StaticResource name}"></TextBlock>
+                    <TextBlock  Style="{StaticResource name}">Название</TextBlock>
+                    <TextBox TextAlignment="Center" Name="name_f" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Стоимость</TextBlock>
+                    <TextBox Name="cost_f" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Длительность (в мин)</TextBlock>
+                    <TextBox Name="dlit_f" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Описание</TextBlock>
+                    <TextBox Name="opis_f" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Скидка (%)</TextBlock>
+                    <TextBox Name="skid_f" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Основное изображение</TextBlock>
+                    <TextBox Name="foto_f" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <Button Name="img_f" Content="Выбрать изображение" Initialized="img_f_Initialized" Template="{StaticResource butt}" Click="img_f_Click"  Margin="0,10,0,0"></Button>
+                    <Button Name="soxr" Content="Сохранить изменения" Initialized="soxr_Initialized" Template="{StaticResource butt}" Click="soxr_Click" Margin="0,10,0,0" ></Button>
+                    <Button Name="nazad" Content="Назад" Template="{StaticResource butt}" Click="nazad_Click"  Margin="0,10,0,0"></Button>
+                </StackPanel>
+                
+                <StackPanel Name="dobav_ff" Visibility="Collapsed">
+                    <TextBlock  Style="{StaticResource name}"  Margin="0,10,0,0">Название</TextBlock>
+                    <TextBox Name="name_ff" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Стоимость</TextBlock>
+                    <TextBox Name="cost_ff" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Длительность (в мин)</TextBlock>
+                    <TextBox Name="dlit_ff" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Описание</TextBlock>
+                    <TextBox Name="opis_ff" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Скидка (%)</TextBlock>
+                    <TextBox Name="skid_ff" TextAlignment="Center" Style="{StaticResource tb}"></TextBox>
+                    <TextBlock  Style="{StaticResource name}">Основное изображение</TextBlock>
+                    <TextBox Name="foto_ff" Style="{StaticResource tb}"></TextBox>
+                    <Button Name="img_ff" Content="Выбрать изображение" Initialized="img_ff_Initialized" Template="{StaticResource butt}" Margin="0,10,0,0" Click="img_ff_Click"></Button>
+                    <Button Name="final_dob" Initialized="final_dob_Initialized" Click="final_dob_Click" Template="{StaticResource butt}" Content="Добавить запись" Margin="0,10,0,0"></Button>
+                    <Button Name="naz" Click="naz_Click" Template="{StaticResource butt}" Content="Назад" Margin="0,10,0,0"></Button>
+                </StackPanel>
+                <StackPanel Name="forma_dob" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource name}">Наименование выбранной услуги:</TextBlock>
+                    <TextBlock Name="nam_dob" Style="{StaticResource name}"></TextBlock>
+                    <TextBlock Style="{StaticResource name}">Длительность (в мин):</TextBlock>
+                    <TextBlock Name="dlit_dob" Style="{StaticResource name}"></TextBlock>
+                    <TextBlock Style="{StaticResource name}">ФИО клиента</TextBlock>
+                    <ComboBox Name="CBPeople"></ComboBox>
+                    <TextBlock Style="{StaticResource name}">Дата услуги</TextBlock>
+                    <DatePicker Name="DP_dob"></DatePicker>
+                    <TextBlock Style="{StaticResource name}">Введите время</TextBlock>
+                    <TextBox Name="TBtime" TextChanged="TBtime_TextChanged" TextAlignment="Left"  Style="{StaticResource tb}"></TextBox>
+                    <TextBlock Style="{StaticResource name}">Введите комментарий: </TextBlock>
+                    <TextBox></TextBox>
+                    <Button Content="Сохранить" Name="soxr_dob" Template="{StaticResource butt}" Margin="0,10,0,0"></Button>
+                    <Button Name="naz_dobav" Click="naz_dobav_Click" Template="{StaticResource butt}" Content="Назад" Margin="0,10,0,0"></Button>
+                </StackPanel>
+                <StackPanel Margin="30,10,0,0" Name="dann" Visibility="Collapsed">
+                    <TextBlock Style="{StaticResource title}" >Количество выведенных данных:</TextBlock>
+                    <TextBlock Name="Kol"></TextBlock>
+                    <TextBlock Style="{StaticResource title}" >Общее количество записей в базе:</TextBlock>
+                    <TextBlock Name="Ob_kol"></TextBlock>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
 

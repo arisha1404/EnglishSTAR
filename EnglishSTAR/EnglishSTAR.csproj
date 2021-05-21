@@ -46,6 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -182,6 +183,8 @@
       <DependentUpon>BD_model.edmx</DependentUpon>
       <LastGenOutput>BD_model.cs</LastGenOutput>
     </Content>
+    <Resource Include="img\school_logo.ico" />
+    <Resource Include="img\school_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
